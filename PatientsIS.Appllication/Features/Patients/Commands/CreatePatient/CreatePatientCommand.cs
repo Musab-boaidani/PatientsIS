@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MediatR;
 
-namespace PatientsIS.Domain
+namespace PatientsIS.Appllication.Features.Patients.Commands.CreatePatient
 {
-    public class Patient
+    internal class CreatePatientCommand:IRequest<Guid>
     {
-        public Guid Id { get; set; }
+      
         public string Name { get; set; }
         public int FileNo { get; set; }
         public string CitizenId { get; set; }
@@ -24,9 +25,6 @@ namespace PatientsIS.Domain
         public string ContactRelation { get; set; }
         public string ContactPhone { get; set; }
         public DateTime FirstVisitDate { get; set; }
-        public DateTime RecordCreationDate { get; set; }
-
-
-
+        
     }
 }

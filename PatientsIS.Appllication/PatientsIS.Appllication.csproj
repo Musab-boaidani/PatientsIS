@@ -15,9 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Commands\" />
-    <Folder Include="Features\Queries\" />
-    <Folder Include="Profiles\" />
+    <Folder Include="Features\Patients\Queries\" />
   </ItemGroup>
 
 </Project>
