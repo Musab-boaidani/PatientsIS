@@ -5,7 +5,7 @@ using MediatR;
 
 namespace PatientsIS.Appllication.Features.Patients.Commands.UpdatePatient
 {
-    internal class UpdatePatientCommand:IRequest
+    public class UpdatePatientCommand:IRequest
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

@@ -4,7 +4,7 @@ using System.Text;
 using FluentValidation;
 namespace PatientsIS.Appllication.Features.Patients.Commands.CreatePatient
 {
-    internal class CreatePatientCommandValidator : AbstractValidator<CreatePatientCommand>
+    public class CreatePatientCommandValidator : AbstractValidator<CreatePatientCommand>
     {
         public CreatePatientCommandValidator()
         {

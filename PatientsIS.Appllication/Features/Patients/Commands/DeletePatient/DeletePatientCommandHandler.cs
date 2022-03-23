@@ -11,7 +11,7 @@ using PatientsIS.Appllication.Contracts;
 namespace PatientsIS.Appllication.Features.Patients.Commands.DeletePatient
 {
 
-    internal class DeletePatientCommandHandler : IRequestHandler<DeletePatientCommand>
+    public class DeletePatientCommandHandler : IRequestHandler<DeletePatientCommand>
     {
       
         public readonly IPatientAsyncRepository _repository;

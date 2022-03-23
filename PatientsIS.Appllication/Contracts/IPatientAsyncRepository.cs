@@ -5,7 +5,7 @@ using PatientsIS.Domain;
 
 namespace PatientsIS.Appllication.Contracts
 {
-    internal interface IPatientAsyncRepository:IAsyncRepository<Patient>
+    public interface IPatientAsyncRepository:IAsyncRepository<Patient>
     {
     }
 }

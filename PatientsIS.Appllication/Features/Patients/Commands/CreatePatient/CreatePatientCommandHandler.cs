@@ -10,7 +10,7 @@ using PatientsIS.Domain;
 
 namespace PatientsIS.Appllication.Features.Patients.Commands.CreatePatient
 {
-    internal class CreatePatientCommandHandler : IRequestHandler<CreatePatientCommand, Guid>
+    public class CreatePatientCommandHandler : IRequestHandler<CreatePatientCommand, Guid>
     {
         public readonly IMapper _mapper;
         public readonly IPatientAsyncRepository _repository;

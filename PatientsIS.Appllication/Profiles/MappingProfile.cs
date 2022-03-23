@@ -8,7 +8,7 @@ using PatientsIS.Appllication.Features.Patients.Commands.UpdatePatient;
 
 namespace PatientsIS.Appllication.Profiles
 {
-    internal class MappingProfile : Profile
+    public class MappingProfile : Profile
     {
         public MappingProfile()
         {

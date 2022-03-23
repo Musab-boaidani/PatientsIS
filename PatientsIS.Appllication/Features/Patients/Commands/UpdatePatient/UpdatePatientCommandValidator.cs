@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace PatientsIS.Appllication.Features.Patients.Commands.UpdatePatient
 {
-    internal class UpdatePatientCommandValidator:AbstractValidator<UpdatePatientCommand>
+    public class UpdatePatientCommandValidator:AbstractValidator<UpdatePatientCommand>
     {
         UpdatePatientCommandValidator()
         {
