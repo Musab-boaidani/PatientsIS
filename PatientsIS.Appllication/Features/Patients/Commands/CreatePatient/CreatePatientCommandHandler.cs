@@ -13,18 +13,18 @@ namespace PatientsIS.Appllication.Features.Patients.Commands.CreatePatient
     internal class CreatePatientCommandHandler : IRequestHandler<CreatePatientCommand, Guid>
     {
         public readonly IMapper _mapper;
-        public readonly IPatientAsyncRepository _Repository;
+        public readonly IPatientAsyncRepository _repository;
 
         public CreatePatientCommandHandler(IMapper mapper, IPatientAsyncRepository repository)
         {
             _mapper = mapper;
-            _Repository = repository;
+            _repository = repository;
         }
 
         public async Task<Guid> Handle(CreatePatientCommand request, CancellationToken cancellationToken)
         {
             Patient patient=_mapper.Map<Patient>(request);
-            patient= await _Repository.AddAsync(patient);
+            patient= await _repository.AddAsync(patient);
             return patient.Id;
         }
     }

@@ -4,6 +4,7 @@ using System.Text;
 using AutoMapper;
 using PatientsIS.Domain;
 using PatientsIS.Appllication.Features.Patients.Commands.CreatePatient;
+using PatientsIS.Appllication.Features.Patients.Commands.UpdatePatient;
 
 namespace PatientsIS.Appllication.Profiles
 {
@@ -12,6 +13,7 @@ namespace PatientsIS.Appllication.Profiles
         public MappingProfile()
         {
             CreateMap<Patient, CreatePatientCommand>().ReverseMap();
+            CreateMap<Patient, UpdatePatientCommand>().ReverseMap();
         }
     }
 }
