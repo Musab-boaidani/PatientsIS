@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using MediatR;
 
-namespace PatientsIS.Application.Features.Patients.Commands.UpdatePatient
+namespace PatientsIS.Application.Features.Patients.Queries.SearchPatient
 {
-    public class UpdatePatientCommand:IRequest
+    public class SearchPatientModelView
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -25,5 +24,9 @@ namespace PatientsIS.Application.Features.Patients.Commands.UpdatePatient
         public string ContactRelation { get; set; }
         public string ContactPhone { get; set; }
         public DateTime FirstVisitDate { get; set; }
+        public DateTime RecordCreationDate { get; set; }
+
+
+
     }
 }

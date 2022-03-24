@@ -4,11 +4,11 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using PatientsIS.Appllication.Contracts;
+using PatientsIS.Application.Contracts;
 using AutoMapper;
 using PatientsIS.Domain;
 
-namespace PatientsIS.Appllication.Features.Patients.Commands.UpdatePatient
+namespace PatientsIS.Application.Features.Patients.Commands.UpdatePatient
 {
     public class UpdatePatientCommandHandler : IRequestHandler<UpdatePatientCommand>
     {

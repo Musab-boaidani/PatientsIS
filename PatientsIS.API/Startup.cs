@@ -12,6 +12,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.AspNetCore;
 using System.Reflection;
+using PatientsIS.Application;
+using PatientsIS.Persistence;
+using PatientsIS.Application.Features.Patients.Commands.CreatePatient;
 
 namespace PatientsIS.API
 {
@@ -27,7 +30,13 @@ namespace PatientsIS.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddFluentValidation(c => c.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddControllers().AddFluentValidation(fv =>
+            {
+                fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+                
+            });
+            services.AddApplicationServices();
+            services.AddPersistenceServices(Configuration);
             services.AddSwaggerDocument();
         }
 

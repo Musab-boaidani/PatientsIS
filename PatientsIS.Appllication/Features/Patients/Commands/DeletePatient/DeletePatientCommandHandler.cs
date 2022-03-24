@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using MediatR;
 using PatientsIS.Domain;
 using AutoMapper;
-using PatientsIS.Appllication.Contracts;
+using PatientsIS.Application.Contracts;
 
-namespace PatientsIS.Appllication.Features.Patients.Commands.DeletePatient
+namespace PatientsIS.Application.Features.Patients.Commands.DeletePatient
 {
 
     public class DeletePatientCommandHandler : IRequestHandler<DeletePatientCommand>

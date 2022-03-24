@@ -2,8 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using FluentValidation.AspNetCore;
+using PatientsIS.Application.Features.Patients.Commands.CreatePatient;
+using PatientsIS.Application.Features.Patients.Commands.UpdatePatient;
 
-namespace PatientsIS.Appllication
+namespace PatientsIS.Application
 {
     public static class ApplicationServices
     {

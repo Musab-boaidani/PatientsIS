@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using MediatR;
 
-namespace PatientsIS.Appllication.Features.Patients.Commands.CreatePatient
+namespace PatientsIS.Application.Features.Patients.Commands.CreatePatient
 {
     public class CreatePatientCommand:IRequest<Guid>
     {

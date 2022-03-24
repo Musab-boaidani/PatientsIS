@@ -5,9 +5,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using PatientsIS.Appllication.Contracts;
+using PatientsIS.Application.Contracts;
 
-namespace PatientsIS.Appllication.Features.Patients.Queries.GetPatientsList
+namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
 {
     public class GetPatientsListQueryHandler : IRequestHandler<GetPatientsListQuery, List<GetPatientsListModelView>>
     {

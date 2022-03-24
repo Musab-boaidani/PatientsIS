@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
 
-namespace PatientsIS.Appllication.Features.Patients.Commands.UpdatePatient
+namespace PatientsIS.Application.Features.Patients.Commands.UpdatePatient
 {
     public class UpdatePatientCommandValidator:AbstractValidator<UpdatePatientCommand>
     {
@@ -15,7 +15,7 @@ namespace PatientsIS.Appllication.Features.Patients.Commands.UpdatePatient
             RuleFor(p => p.Birthdate).NotEmpty();
             RuleFor(p => p.Gender).NotEmpty();
             RuleFor(p => p.Natinality).NotEmpty();
-            RuleFor(p => p.PhoneNumber).NotEmpty();
+            RuleFor(p => p.PhoneNumber).NotEmpty().MaximumLength(15).MinimumLength(10).Matches(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"); ;
             RuleFor(p => p.Email).EmailAddress().NotEmpty();
             RuleFor(p => p.Country).NotEmpty();
             RuleFor(p => p.City).NotEmpty();

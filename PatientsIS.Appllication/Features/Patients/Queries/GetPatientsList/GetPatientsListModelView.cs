@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PatientsIS.Appllication.Features.Patients.Queries.GetPatientsList
+namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
 {
     public class GetPatientsListModelView
     {

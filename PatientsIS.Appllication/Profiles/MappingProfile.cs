@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 using PatientsIS.Domain;
-using PatientsIS.Appllication.Features.Patients.Commands.CreatePatient;
-using PatientsIS.Appllication.Features.Patients.Commands.UpdatePatient;
-using PatientsIS.Appllication.Features.Patients.Queries.GetPatientsList;
+using PatientsIS.Application.Features.Patients.Commands.CreatePatient;
+using PatientsIS.Application.Features.Patients.Commands.UpdatePatient;
+using PatientsIS.Application.Features.Patients.Queries.GetPatientsList;
+using PatientsIS.Application.Features.Patients.Queries.SearchPatient;
 
-namespace PatientsIS.Appllication.Profiles
+namespace PatientsIS.Application.Profiles
 {
     public class MappingProfile : Profile
     {
@@ -16,6 +17,7 @@ namespace PatientsIS.Appllication.Profiles
             CreateMap<Patient, CreatePatientCommand>().ReverseMap();
             CreateMap<Patient, UpdatePatientCommand>().ReverseMap();
             CreateMap<Patient, GetPatientsListModelView>().ReverseMap();
+            CreateMap<Patient, SearchPatientModelView>().ReverseMap();
         }
     }
 }

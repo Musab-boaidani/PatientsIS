@@ -5,10 +5,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using AutoMapper;
-using PatientsIS.Appllication.Contracts;
+using PatientsIS.Application.Contracts;
 using PatientsIS.Domain;
 
-namespace PatientsIS.Appllication.Features.Patients.Commands.CreatePatient
+namespace PatientsIS.Application.Features.Patients.Commands.CreatePatient
 {
     public class CreatePatientCommandHandler : IRequestHandler<CreatePatientCommand, Guid>
     {
