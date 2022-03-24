@@ -5,6 +5,7 @@ using MediatR;
 
 namespace PatientsIS.Application.Features.Patients.Commands.CreatePatient
 {
+    
     public class CreatePatientCommand:IRequest<Guid>
     {
       

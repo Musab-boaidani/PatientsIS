@@ -19,7 +19,7 @@ namespace StudentIS.Persistence
 
         public async Task<IReadOnlyList<Patient>> SearchAsync(string? Name, int? FileNo, string? PhoneNumber)
         {
-            return await _dbContext.Patients.Where(p => (Name != null || p.Name.Contains(Name)) && (FileNo != null || p.FileNo == FileNo) && (PhoneNumber!=null || p.PhoneNumber== PhoneNumber)).ToListAsync();
+            return await _dbContext.Patients.Where(p => (Name == null || p.Name.Contains(Name)) && (FileNo == null || p.FileNo == FileNo) && (PhoneNumber==null || p.PhoneNumber.Contains(PhoneNumber) )).ToListAsync();
                 
         }
     }

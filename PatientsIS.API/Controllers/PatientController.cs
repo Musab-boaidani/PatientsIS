@@ -30,7 +30,7 @@ namespace PatientsIS.API.Controllers
             return Ok(PL);
         }
         [HttpGet("Search", Name = "SearchForPatient")]
-        public async Task<ActionResult<List<SearchPatientModelView>>> SearchForPatient(string? Name, int? FileNo, string? PhoneNumber)
+        public async Task<ActionResult<List<SearchPatientModelView>>> SearchForPatient(string? Name=null, int? FileNo = null, string? PhoneNumber = null)
         {
             var PL = await _mediator.Send(new SearchPatientQuery() { Name=Name,FileNo=FileNo,PhoneNumber=PhoneNumber});
             return Ok(PL);
