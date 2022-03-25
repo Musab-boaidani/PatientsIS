@@ -6,7 +6,7 @@ using PatientsIS.Domain;
 using PatientsIS.Application.Features.Patients.Commands.CreatePatient;
 using PatientsIS.Application.Features.Patients.Commands.UpdatePatient;
 using PatientsIS.Application.Features.Patients.Queries.GetPatientsList;
-using PatientsIS.Application.Features.Patients.Queries.SearchPatient;
+
 
 namespace PatientsIS.Application.Profiles
 {
@@ -17,7 +17,7 @@ namespace PatientsIS.Application.Profiles
             CreateMap<Patient, CreatePatientCommand>().ReverseMap();
             CreateMap<Patient, UpdatePatientCommand>().ReverseMap();
             CreateMap<Patient, GetPatientsListModelView>().ReverseMap();
-            CreateMap<Patient, SearchPatientModelView>().ReverseMap();
+
         }
     }
 }

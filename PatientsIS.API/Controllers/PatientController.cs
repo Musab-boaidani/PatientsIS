@@ -2,7 +2,6 @@
 using PatientsIS.Application.Features.Patients.Commands.UpdatePatient;
 using PatientsIS.Application.Features.Patients.Commands.DeletePatient;
 using PatientsIS.Application.Features.Patients.Queries.GetPatientsList;
-using PatientsIS.Application.Features.Patients.Queries.SearchPatient;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
@@ -24,17 +23,13 @@ namespace PatientsIS.API.Controllers
         }
 
         [HttpGet("~/api/Patients", Name = "GetPatientsList")]
-        public async Task<ActionResult<List<GetPatientsListModelView>>> GetPatientsList()
+        public async Task<ActionResult<List<GetPatientsListModelView>>> GetPatientsList(string? Name=null, int? FileNo = null, string? PhoneNumber = null)
         {
-            var PL = await _mediator.Send(new GetPatientsListQuery());
+            var PL = await _mediator.Send(new GetPatientsListQuery(){ Name=Name,FileNo=FileNo,PhoneNumber=PhoneNumber});
+            //HttpContext.Response.Headers.Add("x-my-custom-header", "individual response");
             return Ok(PL);
         }
-        [HttpGet("Search", Name = "SearchForPatient")]
-        public async Task<ActionResult<List<SearchPatientModelView>>> SearchForPatient(string? Name=null, int? FileNo = null, string? PhoneNumber = null)
-        {
-            var PL = await _mediator.Send(new SearchPatientQuery() { Name=Name,FileNo=FileNo,PhoneNumber=PhoneNumber});
-            return Ok(PL);
-        }
+       
         [HttpPost(Name = "AddPatient")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreatePatientCommand createPatientCommand)
         {

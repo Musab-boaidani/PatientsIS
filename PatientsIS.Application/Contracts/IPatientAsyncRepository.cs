@@ -8,6 +8,7 @@ namespace PatientsIS.Application.Contracts
 {
     public interface IPatientAsyncRepository:IAsyncRepository<Patient>
     {
-        Task<IReadOnlyList<Patient>> SearchAsync(string? Name,int? FileNo, string? PhoneNumber );
+        Task UpdatePatientAsync(Patient entity);
+        Task<IReadOnlyList<Patient>> ListAllPatientAsync(string? Name,int? FileNo, string? PhoneNumber );
     }
 }

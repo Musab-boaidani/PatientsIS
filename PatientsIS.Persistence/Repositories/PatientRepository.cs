@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using PatientsIS.Application.Contracts;
 using PatientsIS.Domain;
@@ -16,12 +17,21 @@ namespace StudentIS.Persistence
         {
 
         }
-
-        public async Task<IReadOnlyList<Patient>> SearchAsync(string? Name, int? FileNo, string? PhoneNumber)
+        
+        public  async Task UpdatePatientAsync(Patient patient)
         {
-            return await _dbContext.Patients.Where(p => (Name == null || p.Name.Contains(Name)) && (FileNo == null || p.FileNo == FileNo) && (PhoneNumber==null || p.PhoneNumber.Contains(PhoneNumber) )).ToListAsync();
-                
+           
+            _dbContext.Entry(patient).State = EntityState.Modified;
+            _dbContext.Entry(patient).Property(p => p.RecordCreationDate).IsModified = false;
+
+            await _dbContext.SaveChangesAsync();
         }
-    }
+        public async Task<IReadOnlyList<Patient>> ListAllPatientAsync(string? Name, int? FileNo, string? PhoneNumber)
+            {
+           
+                return await _dbContext.Patients.Where(p => (Name == null || p.Name.Contains(Name)) && (FileNo == null || p.FileNo == FileNo) && (PhoneNumber==null || p.PhoneNumber.Contains(PhoneNumber) )).ToListAsync();
+                
+            }
+        }
 
 }

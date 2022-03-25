@@ -22,7 +22,7 @@ namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
 
         public async Task<List<GetPatientsListModelView>> Handle(GetPatientsListQuery request, CancellationToken cancellationToken)
         {
-            var Patients = await _repository.ListAllAsync();
+            var Patients = await _repository.ListAllPatientAsync(request.Name, request.FileNo, request.PhoneNumber);
             var x= _mapper.Map<List<GetPatientsListModelView>>(Patients);
             return x;
         }

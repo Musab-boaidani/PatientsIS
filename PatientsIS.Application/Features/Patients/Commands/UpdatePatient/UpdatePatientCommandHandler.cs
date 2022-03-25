@@ -24,7 +24,7 @@ namespace PatientsIS.Application.Features.Patients.Commands.UpdatePatient
         public async Task<Unit> Handle(UpdatePatientCommand request, CancellationToken cancellationToken)
         {
             Patient patient = _mapper.Map<Patient>(request);
-            await _repository.UpdateAsync(patient);
+            await _repository.UpdatePatientAsync(patient);
             return Unit.Value;
         }
     }

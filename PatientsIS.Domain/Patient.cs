@@ -24,9 +24,9 @@ namespace PatientsIS.Domain
         public string ContactRelation { get; set; }
         public string ContactPhone { get; set; }
         public DateTime FirstVisitDate { get; set; }
-        public DateTime RecordCreationDate { get; set; }
 
+        public DateTime RecordCreationDate { get; set; }=  DateTime.Now;
 
-
+       
     }
 }
