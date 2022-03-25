@@ -24,7 +24,7 @@ namespace PatientsIS.Application.Features.Patients.Commands.CreatePatient
         public async Task<Guid> Handle(CreatePatientCommand request, CancellationToken cancellationToken)
         {
             Patient patient=_mapper.Map<Patient>(request);
-            patient= await _repository.AddAsync(patient);
+            patient = await _repository.AddAsync(patient);
             return patient.Id;
         }
     }

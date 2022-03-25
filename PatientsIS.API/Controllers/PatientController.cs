@@ -22,8 +22,8 @@ namespace PatientsIS.API.Controllers
         {
             _mediator = mediator;
         }
-        [Route("~/api/Patients")]
-        [HttpGet( Name = "GetPatientsList")]
+
+        [HttpGet("~/api/Patients", Name = "GetPatientsList")]
         public async Task<ActionResult<List<GetPatientsListModelView>>> GetPatientsList()
         {
             var PL = await _mediator.Send(new GetPatientsListQuery());

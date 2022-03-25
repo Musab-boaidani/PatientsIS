@@ -7,7 +7,7 @@ namespace PatientsIS.Application.Features.Patients.Commands.UpdatePatient
 {
     public class UpdatePatientCommandValidator:AbstractValidator<UpdatePatientCommand>
     {
-        UpdatePatientCommandValidator()
+        public UpdatePatientCommandValidator()
         {
             RuleFor(p => p.Name).NotEmpty().MinimumLength(3);
             RuleFor(p => p.FileNo).NotEmpty();

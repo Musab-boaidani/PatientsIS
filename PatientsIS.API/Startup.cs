@@ -17,6 +17,7 @@ using PatientsIS.Persistence;
 using PatientsIS.Application.Features.Patients.Commands.CreatePatient;
 using PatientsIS.Domain;
 
+
 namespace PatientsIS.API
 {
     public class Startup
@@ -32,12 +33,7 @@ namespace PatientsIS.API
         public void ConfigureServices(IServiceCollection services)
         {
             
-            services.AddControllers().AddFluentValidation(fv =>
-            {
-                //fv.RegisterValidatorsFromAssemblyContaining<Startup>();
-                fv.RegisterValidatorsFromAssembly(Assembly.GetAssembly(typeof(Startup)));
-                
-            });
+            services.AddControllers().AddFluentValidation();
             services.AddApplicationServices();
             services.AddPersistenceServices(Configuration);
             services.AddSwaggerDocument();
