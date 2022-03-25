@@ -8,6 +8,7 @@ using MediatR;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
+using Newtonsoft.Json;
 
 namespace PatientsIS.API.Controllers
 {
@@ -23,11 +24,18 @@ namespace PatientsIS.API.Controllers
         }
 
         [HttpGet("~/api/Patients", Name = "GetPatientsList")]
-        public async Task<ActionResult<List<GetPatientsListModelView>>> GetPatientsList(string? Name=null, int? FileNo = null, string? PhoneNumber = null)
+        public async Task<ActionResult<List<GetPatientsListModelView>>> GetPatientsList(string? Name=null, int? FileNo = null, string? PhoneNumber = null, int Page=1)
         {
-            var PL = await _mediator.Send(new GetPatientsListQuery(){ Name=Name,FileNo=FileNo,PhoneNumber=PhoneNumber});
-            //HttpContext.Response.Headers.Add("x-my-custom-header", "individual response");
-            return Ok(PL);
+            var tuple = await _mediator.Send(new GetPatientsListQuery() { Name = Name, FileNo = FileNo, PhoneNumber = PhoneNumber, Page = Page });
+            //Serializing the pager to add to header
+            string PagingHeaderText = JsonConvert.SerializeObject(tuple.Item2);
+
+            //adding to header
+            Response.Headers.Add("X-Pager", PagingHeaderText);
+
+            //the output list
+            var PatientList = tuple.Item1;
+            return Ok(PatientList);
         }
        
         [HttpPost(Name = "AddPatient")]

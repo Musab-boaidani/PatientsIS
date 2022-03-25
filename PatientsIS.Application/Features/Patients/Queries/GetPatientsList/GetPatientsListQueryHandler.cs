@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
+using PatientsIS.Application.Common.Pagination;
 using PatientsIS.Application.Contracts;
 
 namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
 {
-    public class GetPatientsListQueryHandler : IRequestHandler<GetPatientsListQuery, List<GetPatientsListModelView>>
+    public class GetPatientsListQueryHandler : IRequestHandler<GetPatientsListQuery, Tuple<List<GetPatientsListModelView>, Pager>>
     {
         public readonly IPatientAsyncRepository _repository;
         public readonly IMapper _mapper;
@@ -20,11 +22,29 @@ namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
             _mapper = mapper;
         }
 
-        public async Task<List<GetPatientsListModelView>> Handle(GetPatientsListQuery request, CancellationToken cancellationToken)
+        public async Task<Tuple<List<GetPatientsListModelView>,Pager>> Handle(GetPatientsListQuery request, CancellationToken cancellationToken)
         {
-            var Patients = await _repository.ListAllPatientAsync(request.Name, request.FileNo, request.PhoneNumber);
-            var x= _mapper.Map<List<GetPatientsListModelView>>(Patients);
-            return x;
+            //all the pateint from the DB ,this come from the patient repo
+            var Patients = await _repository.ListAllPatientAsync();
+
+            //parameters from pager
+            int totalItem = Patients.Count();
+            int pageSize = 10;
+
+            //pager
+            Pager pager = new Pager(totalItem ,request.Page, pageSize); 
+
+            //search and paging to get the needed patients
+            var NeededPatient =  Patients
+                .Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize)
+                .Where(p => (string.IsNullOrEmpty(request.Name) || p.Name.Contains(request.Name))
+                && (request.FileNo == null || p.FileNo == request.FileNo)
+                && (string.IsNullOrEmpty(request.PhoneNumber) || p.PhoneNumber.Contains(request.PhoneNumber))).ToList();
+
+            //mapping the needed patients
+            var PatientsListModelView = _mapper.Map<List<GetPatientsListModelView>>(NeededPatient);
+
+            return new Tuple<List<GetPatientsListModelView>, Pager>(PatientsListModelView,pager) ;
         }
     }
 }

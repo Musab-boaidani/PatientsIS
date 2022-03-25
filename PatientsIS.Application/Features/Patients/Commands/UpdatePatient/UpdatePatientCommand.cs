@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MediatR;
+using PatientsIS.Domain;
 
 namespace PatientsIS.Application.Features.Patients.Commands.UpdatePatient
 {
@@ -12,7 +13,7 @@ namespace PatientsIS.Application.Features.Patients.Commands.UpdatePatient
         public int FileNo { get; set; }
         public string CitizenId { get; set; }
         public DateTime Birthdate { get; set; }
-        public bool Gender { get; set; }
+        public Gender Gender { get; set; }
         public string Natinality { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }

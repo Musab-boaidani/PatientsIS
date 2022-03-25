@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using FluentValidation;
+using PatientsIS.Domain;
+
 namespace PatientsIS.Application.Features.Patients.Commands.CreatePatient
 {
     public class CreatePatientCommandValidator : AbstractValidator<CreatePatientCommand>
@@ -9,10 +11,10 @@ namespace PatientsIS.Application.Features.Patients.Commands.CreatePatient
         public CreatePatientCommandValidator()
         {
             RuleFor(p => p.Name).NotEmpty().MinimumLength(3);
-            RuleFor(p => p.FileNo).NotEmpty();
+            RuleFor(p => p.FileNo).GreaterThanOrEqualTo(1);
             RuleFor(p => p.CitizenId).NotEmpty();
             RuleFor(p => p.Birthdate).NotEmpty();
-            RuleFor(p => p.Gender).NotEmpty();
+            RuleFor(p => p.Gender).IsInEnum();
             RuleFor(p => p.Natinality).NotEmpty();
             RuleFor(p => p.PhoneNumber).NotEmpty().MaximumLength(15).MinimumLength(10).Matches(@"^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$"); ;
             RuleFor(p => p.Email).EmailAddress().NotEmpty();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PatientsIS.Domain;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
         public int FileNo { get; set; }
         public string CitizenId { get; set; }
         public DateTime Birthdate { get; set; }
-        public bool Gender { get; set; }
+        public Gender Gender { get; set; }
         public string Natinality { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }

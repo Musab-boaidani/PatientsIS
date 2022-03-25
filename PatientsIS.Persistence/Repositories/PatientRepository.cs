@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using PatientsIS.Application.Common.Pagination;
 using PatientsIS.Application.Contracts;
 using PatientsIS.Domain;
 using PatientsIS.Persistence;
@@ -26,12 +27,12 @@ namespace StudentIS.Persistence
 
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<IReadOnlyList<Patient>> ListAllPatientAsync(string? Name, int? FileNo, string? PhoneNumber)
-            {
-           
-                return await _dbContext.Patients.Where(p => (Name == null || p.Name.Contains(Name)) && (FileNo == null || p.FileNo == FileNo) && (PhoneNumber==null || p.PhoneNumber.Contains(PhoneNumber) )).ToListAsync();
+        public async Task<IReadOnlyList<Patient>> ListAllPatientAsync()
+        {
+   
+            return await _dbContext.Patients.ToListAsync();
                 
-            }
         }
+    }
 
 }
