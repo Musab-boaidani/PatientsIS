@@ -15,6 +15,7 @@ using System.Reflection;
 using PatientsIS.Application;
 using PatientsIS.Persistence;
 using PatientsIS.Application.Features.Patients.Commands.CreatePatient;
+using PatientsIS.Domain;
 
 namespace PatientsIS.API
 {
@@ -30,9 +31,11 @@ namespace PatientsIS.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
             services.AddControllers().AddFluentValidation(fv =>
             {
-                fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+                //fv.RegisterValidatorsFromAssemblyContaining<Startup>();
+                fv.RegisterValidatorsFromAssembly(Assembly.GetAssembly(typeof(Startup)));
                 
             });
             services.AddApplicationServices();
