@@ -25,7 +25,7 @@ namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
         public async Task<Tuple<List<GetPatientsListModelView>,Pager>> Handle(GetPatientsListQuery request, CancellationToken cancellationToken)
         {
             //all the pateint from the DB ,this come from the patient repo
-            var Patients = await _repository.ListAllPatientAsync();
+            var Patients = await _repository.ListAllAsync();
 
             //parameters from pager
             int totalItem = Patients.Count();

@@ -10,6 +10,7 @@ namespace PatientsIS.Application.Contracts
     public interface IPatientAsyncRepository:IAsyncRepository<Patient>
     {
         Task UpdatePatientAsync(Patient entity);
-        Task<IReadOnlyList<Patient>> ListAllPatientAsync();
+        
+
     }
 }

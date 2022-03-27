@@ -27,12 +27,7 @@ namespace StudentIS.Persistence
 
             await _dbContext.SaveChangesAsync();
         }
-        public async Task<IReadOnlyList<Patient>> ListAllPatientAsync()
-        {
-   
-            return await _dbContext.Patients.ToListAsync();
-                
-        }
+       
     }
 
 }
