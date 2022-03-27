@@ -37,7 +37,14 @@ namespace PatientsIS.API.Controllers
             var PatientList = tuple.Item1;
             return Ok(PatientList);
         }
-       
+
+        [HttpGet("{id}", Name = "GetPatientById")]
+        public async Task<ActionResult<GetPatientModelView>> GetStudentById(Guid id)
+        {
+            var getPatientQuery = new GetPatientQuery() { Id = id };
+            return Ok(await _mediator.Send(getPatientQuery));
+        }
+
         [HttpPost(Name = "AddPatient")]
         public async Task<ActionResult<Guid>> Create([FromBody] CreatePatientCommand createPatientCommand)
         {

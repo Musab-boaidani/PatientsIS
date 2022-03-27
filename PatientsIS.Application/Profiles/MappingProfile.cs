@@ -17,6 +17,7 @@ namespace PatientsIS.Application.Profiles
             CreateMap<Patient, CreatePatientCommand>().ReverseMap();
             CreateMap<Patient, UpdatePatientCommand>().ReverseMap();
             CreateMap<Patient, GetPatientsListModelView>().ReverseMap();
+            CreateMap<Patient, GetPatientModelView>().ReverseMap();
 
         }
     }
