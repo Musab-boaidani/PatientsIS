@@ -27,8 +27,15 @@ namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
             //all the pateint from the DB ,this come from the patient repo
             var Patients = await _repository.ListAllAsync();
 
+            //search pateint
+            var SearchPatient = Patients
+               .Where(p => (string.IsNullOrEmpty(request.Name) || p.Name.Contains(request.Name))
+               && (request.FileNo == null || p.FileNo == request.FileNo)
+               && (string.IsNullOrEmpty(request.PhoneNumber) || p.PhoneNumber.Contains(request.PhoneNumber))).ToList();
+
+
             //parameters from pager
-            int totalItem = Patients.Count();
+            int totalItem = SearchPatient.Count();
             int pageSize = 10;
 
             //pager
@@ -37,10 +44,9 @@ namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
             //search and paging to get the needed patients
             var NeededPatient =  Patients
                 .Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize)
-                .Where(p => (string.IsNullOrEmpty(request.Name) || p.Name.Contains(request.Name))
-                && (request.FileNo == null || p.FileNo == request.FileNo)
-                && (string.IsNullOrEmpty(request.PhoneNumber) || p.PhoneNumber.Contains(request.PhoneNumber))).ToList();
+                .ToList();
 
+           
             //mapping the needed patients
             var PatientsListModelView = _mapper.Map<List<GetPatientsListModelView>>(NeededPatient);
 
