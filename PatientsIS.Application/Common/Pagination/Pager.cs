@@ -29,7 +29,7 @@ namespace PatientsIS.Application.Common.Pagination
 
             if (startPage <= 0)
             {
-                endPage = endPage - (startPage);
+                endPage = endPage - (startPage-1);
                 startPage = 1;
             }
             if (endPage > totalPages)

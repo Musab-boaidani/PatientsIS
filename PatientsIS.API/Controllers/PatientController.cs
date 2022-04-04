@@ -9,11 +9,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Cors;
 
 namespace PatientsIS.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+
     public class PatientController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -23,15 +26,16 @@ namespace PatientsIS.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("~/api/Patients", Name = "GetPatientsList")]
-        public async Task<ActionResult<List<GetPatientsListModelView>>> GetPatientsList(string? Name=null, int? FileNo = null, string? PhoneNumber = null, int Page=1)
+        [HttpGet(Name = "GetPatientsList")]
+        public async Task<ActionResult<List<GetPatientsListModelView>>> GetPatientsList(string? Name=null, int? FileNo = null, string? PhoneNumber = null, int Page=1, int PageSize=5)
         {
-            var tuple = await _mediator.Send(new GetPatientsListQuery() { Name = Name, FileNo = FileNo, PhoneNumber = PhoneNumber, Page = Page });
+            var tuple = await _mediator.Send(new GetPatientsListQuery() { Name = Name, FileNo = FileNo, PhoneNumber = PhoneNumber, Page = Page,PageSize=PageSize });
             //Serializing the pager to add to header
             string PagingHeaderText = JsonConvert.SerializeObject(tuple.Item2);
 
             //adding to header
             Response.Headers.Add("X-Pager", PagingHeaderText);
+            Response.Headers.Add("Access-Control-Expose-Headers", "X-Pager");
 
             //the output list
             var PatientList = tuple.Item1;

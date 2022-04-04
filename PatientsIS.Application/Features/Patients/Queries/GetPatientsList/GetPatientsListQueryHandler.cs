@@ -29,20 +29,20 @@ namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
 
             //search pateint
             var SearchPatient = Patients
-               .Where(p => (string.IsNullOrEmpty(request.Name) || p.Name.Contains(request.Name))
+               .Where(p => (string.IsNullOrEmpty(request.Name) || p.Name.Contains(request.Name.Trim()))
                && (request.FileNo == null || p.FileNo == request.FileNo)
-               && (string.IsNullOrEmpty(request.PhoneNumber) || p.PhoneNumber.Contains(request.PhoneNumber))).ToList();
+               && (string.IsNullOrEmpty(request.PhoneNumber) || p.PhoneNumber.Contains(request.PhoneNumber.Trim()))).ToList();
 
 
             //parameters from pager
             int totalItem = SearchPatient.Count();
-            int pageSize = 10;
+     
 
             //pager
-            Pager pager = new Pager(totalItem ,request.Page, pageSize); 
+            Pager pager = new Pager(totalItem ,request.Page, request.PageSize); 
 
             //search and paging to get the needed patients
-            var NeededPatient =  Patients
+            var NeededPatient = SearchPatient
                 .Skip((pager.CurrentPage - 1) * pager.PageSize).Take(pager.PageSize)
                 .ToList();
 
