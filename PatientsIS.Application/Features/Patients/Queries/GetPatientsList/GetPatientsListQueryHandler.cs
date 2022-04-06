@@ -30,7 +30,7 @@ namespace PatientsIS.Application.Features.Patients.Queries.GetPatientsList
             //search pateint
             var SearchPatient = Patients
                .Where(p => (string.IsNullOrEmpty(request.Name) || p.Name.Contains(request.Name.Trim()))
-               && (request.FileNo == null || p.FileNo == request.FileNo)
+               && (request.FileNo == null || p.FileNo.ToString().Contains(request.FileNo.ToString()))
                && (string.IsNullOrEmpty(request.PhoneNumber) || p.PhoneNumber.Contains(request.PhoneNumber.Trim()))).ToList();
 
 
