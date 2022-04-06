@@ -35,7 +35,7 @@ namespace PatientsIS.Application.Common.Pagination
             if (endPage > totalPages)
             {
                 endPage = totalPages;
-                if (endPage > 9)
+                if (endPage >= 9)
                 {
                     startPage = endPage - 8;
                 }
